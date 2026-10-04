@@ -4,16 +4,20 @@ class Contact
     private String phone;
 
     public Contact(String name, String phone)
-    {
-        if (validateName(name) && validatePhone(phone))
+        throws InvalidContactException{
+
+        if (!validateName(name)) 
         {
-            setName(name);;
-            setPhone(phone);;
+            throw new InvalidContactException("Invalid name!");
         }
-        else
+
+        if (!validatePhone(phone)) 
         {
-            throw new IllegalArgumentException("Invalid name or phone number!");
+            throw new InvalidContactException("Invalid phone number!");
         }
+
+        this.name = name.trim();
+        this.phone = phone.trim();
     }
 
     private boolean validateName(String name)
@@ -36,18 +40,19 @@ class Contact
 
     private boolean validatePhone(String phone)
     {
-        if (phone == null)
+        if (phone == null || phone.trim().isEmpty()) 
         {
-                return false;
-        }
-            
-        if (phone.length() < 9)
-        {
-                System.out.println("A number must have at least 9 digits.");
-                return false;
+            return false;
         }
 
-        return true;
+        String cleanPhone = phone.replaceAll("[\\s()-]", "");
+
+        if (!cleanPhone.matches("\\d+")) 
+        {
+            return false;
+        }
+
+        return cleanPhone.length() >= 9;
     }
 
     public String getName()
@@ -61,12 +66,24 @@ class Contact
     }
 
     public void setName(String name)
-    {
+        throws InvalidContactException{
+        
+        if (!validateName(name))
+        {
+            throw new InvalidContactException("Invalid name!");
+        }
+
         this.name = name;
     }
 
     public void setPhone(String phone)
-    {
+        throws InvalidContactException{
+
+        if (!validatePhone(phone))
+        {
+            throw new InvalidContactException("Invalid phone!");
+        }
+
         this.phone = phone;
     }
 }
