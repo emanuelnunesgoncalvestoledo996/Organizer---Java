@@ -1,8 +1,11 @@
 import java.util.Scanner;
+import exceptions.ContactNotFoundException;
+import exceptions.InvalidContactException;
+import exceptions.DuplicateContactException;
 
 public class PhonebookMenu 
 {
-    Phonebook phonebook;
+    private Phonebook phonebook;
 
     public PhonebookMenu(Phonebook phonebook)
     {
@@ -18,9 +21,10 @@ public class PhonebookMenu
             System.out.println("\n========== PHONEBOOK ==========");
             System.out.println("1 - Add contact");
             System.out.println("2 - Print phonebook");
-            System.out.println("3 - Print a contact");
-            System.out.println("4 - Modify a contact");
-            System.out.println("5 - Remove a contact");
+            System.out.println("3 - Search contact");
+            System.out.println("4 - Print single contact");
+            System.out.println("5 - Update contact");
+            System.out.println("6 - Remove contact")
             System.out.println("0 - Quit");
             System.out.println("=============================");
     
@@ -48,7 +52,7 @@ public class PhonebookMenu
         return option;
     }
 
-    public void menuCycle(Scanner input)
+    public void run(Scanner input)
     {
         int option;
 
@@ -58,87 +62,22 @@ public class PhonebookMenu
 
             switch(option)
             {
-                case 1: 
-                {
-                    System.out.println("Input the contact name: ");
-                    String name = input.nextLine();
-
-                    System.out.println("Input the contact phone number: ");
-                    String phone = input.nextLine();
-
-                    phonebook.addContact(name, phone);
+                case 1: addContactMenu(input); 
                     break;
-                }
-            
-                case 2:
-                {
-                    phonebook.printPhonebook();;
+                case 2: phonebook.printPhonebook(); 
                     break;
-                }
-
-                case 3:
-                {
-                    System.out.print("Input the contact that you wish to print: ");
-                    if (input.hasNextInt())
-                    {
-                        int idx = input.nextInt();
-                        input.nextLine();
-                        phonebook.printContact(idx);;
-                    }
-                    else
-                    {
-                        System.out.println("Invalid value.");
-                        input.nextLine();
-                    }
+                case 3: searchContactMenu(input);
                     break;
-                }
-
-                case 4:
-                {
-                    System.out.print("Input the contact number you wish to modify: ");
-
-                    if (input.hasNextInt())
-                    {
-                        int idx = input.nextInt();
-                        input.nextLine();
-                
-                        System.out.print("Input the new contact name: ");
-                        String name = input.nextLine();
-                
-                        System.out.print("Input the new contact phone number: ");
-                        String phone = input.nextLine();
-                
-                        phonebook.updateContact(name,phone,idx);
-                    }
-                    else
-                    {
-                        System.out.println("Invalid value!");
-                        input.nextLine();
-                    }
-                
+                case 4: printContactMenu(input);
                     break;
-                
-                }
-
-                case 5:
-                {
-                    System.out.print("Input the contact you wish to remove: ");
-                    if (input.hasNextInt())
-                    {
-                        int idx = input.nextInt();
-                        input.nextLine();
-                        phonebook.removeContact(idx);
-                    }
-                    else
-                    {
-                        System.out.println("Invalid value!");
-                        input.nextLine();
-                    }
+                case 5: updateContactMenu(input);
                     break;
-                }
-
+                case 6: removeContactMenu(input);
+                    break;
+                case 0: System.out.println("Closing Phonebook");
+                    break;
             }
-        }
-        while (option != 0);
+        } while (option != 0);
+
     }
 }
