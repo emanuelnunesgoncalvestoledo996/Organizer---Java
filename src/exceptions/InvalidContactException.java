@@ -1,6 +1,6 @@
 package exceptions;
 
-class InvalidContactException extends Exception
+public class InvalidContactException extends Exception
 {
     public InvalidContactException(String message)
     {

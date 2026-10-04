@@ -1,3 +1,5 @@
+import exceptions.InvalidContactException;
+
 class Contact
 {
     private String name;

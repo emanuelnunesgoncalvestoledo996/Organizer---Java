@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ContactNotFoundException extends Exception
+public public class ContactNotFoundException extends Exception
 {
     public ContactNotFoundException(String message)
     {

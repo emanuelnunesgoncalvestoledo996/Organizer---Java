@@ -1,6 +1,6 @@
 package exceptions;
 
-class DuplicateContactException extends Exception
+public class DuplicateContactException extends Exception
 {
     public DuplicateContactException(String message) 
     {
