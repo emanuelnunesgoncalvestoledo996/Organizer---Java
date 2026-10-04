@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import exceptions.InvalidContactException;
-import com.sun.jdi.request.DuplicateRequestException;
+import exceptions.DuplicateContactException;
+import exceptions.ContactNotFoundException;
 
 public class Phonebook 
 {
@@ -11,6 +12,16 @@ public class Phonebook
     {
         contacts = new ArrayList<>();
     }
+
+    public int getSize()
+    {
+        return contacts.size();
+    }
+
+    public boolean isEmpty()
+    {
+        return contacts.isEmpty();
+    } 
 
     private boolean validadeCapacity(int capacity)
     {
@@ -82,9 +93,15 @@ public class Phonebook
 
     public void printPhonebook()
     {
-        for (int i = 0; i < this.size; i++)
+        if (contacts.isEmpty()) 
         {
-            System.out.println((i+1) + " - Nome: " + contacts[i].getName() + " - Telefone: " + contacts[i].getPhone());
+            System.out.println("A agenda está vazia.");
+            return;
+        }
+
+        for (int i = 0; i < contacts.size(); i++) 
+        {
+            System.out.println((i + 1) + " - " + contacts.get(i));
         }
     }
 
