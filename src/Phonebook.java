@@ -23,6 +23,15 @@ public class Phonebook
         return contacts.isEmpty();
     } 
 
+    private void checkIndex(int idx)
+        throws ContactNotFoundException{
+
+        if (idx < 0 || idx >= contacts.size())
+        {
+            throw new ContactNotFoundException("Contact not found!");
+        }
+    }
+
     private boolean existsByPhone(String phone)
     {
         for (Contact contact : contacts)
@@ -52,7 +61,7 @@ public class Phonebook
     public Contact searchContact(int idx)
         throws ContactNotFoundException {
 
-        isValidIndex(idx);
+        checkIndex(idx);
 
         return contacts.get(idx);
     }
@@ -69,69 +78,6 @@ public class Phonebook
         }
 
         throw new ContactNotFoundException ("No contact found with the given name!!");
-    }
-
-    public void addContact(String name, String phone)
-    {
-        if (this.size == contacts.length)
-        {
-            resizeArray();
-        }
-
-        contacts[this.size] = new Contact(name, phone);
-        size++;
-    }
-
-    private void resizeArray()
-    {
-        Contact [] newArray = new Contact[contacts.length * 2];
-
-        for (int i = 0; i < contacts.length; i++)
-        {
-            newArray[i] = contacts[i];
-        }
-
-        contacts = newArray;
-    }
-
-    private boolean isValidIndex(int idx)
-    {
-        if (idx < 0 || idx >= contacts.size())
-        {
-            return false;
-        }
-        return true;
-    }
-    
-    public void updateContact(String name, String phone, int idx)
-    {
-        if (isValidIndex(idx))
-        {
-            contacts[idx].setName(name);
-            contacts[idx].setPhone(phone);
-        }
-        else
-        {
-            System.out.println("It's impossible to modify a contact that does not exist.");
-        }
-    } 
-
-    public void removeContact(int idx)
-    {
-        if (isValidIndex(idx))
-        {
-            for (int i = idx; i < this.size - 1; i++)
-            {
-                contacts[i] = contacts[i+1];
-            }
-            contacts[size - 1] = null;
-            size--;
-        }
-
-        else
-        {
-            System.out.println("It's impossible to remove a contact that does not exist.");
-        }
     }
 
     public void printPhonebook()
@@ -152,5 +98,43 @@ public class Phonebook
         throws ContactNotFoundException{
 
         System.out.println(searchContact(idx));
+    }
+
+    public void addContact(String name, String phone) 
+        throws InvalidContactException, DuplicateContactException {
+
+        Contact newContact = new Contact(name, phone);
+
+        if (contacts.contains(newContact)) 
+        {
+            throw new DuplicateContactException("This contact already exists!");
+        }
+        
+        contacts.add(newContact);
+    }
+
+    public void updateContact(int idx, String newName, String newPhone) 
+        throws ContactNotFoundException, InvalidContactException, DuplicateContactException {
+        
+        checkIndex(idx);
+
+        Contact newContact = new Contact(newName, newPhone);
+
+        for (int i = 0; i < contacts.size(); i++) 
+        {
+            if (i != idx && contacts.get(i).equals(newContact))
+            {
+                throw new DuplicateContactException("This contact already exists!");
+            }
+        }
+
+        contacts.set(idx, newContact);
+    }
+
+    public void removeContact(int index) 
+        throws ContactNotFoundException {
+
+        checkIndex(index);
+        contacts.remove(index);
     }
 }
