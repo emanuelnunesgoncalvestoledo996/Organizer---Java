@@ -80,4 +80,41 @@ public class PhonebookMenu
         } while (option != 0);
 
     }
+
+    private void addContactMenu(Scanner input) 
+    {
+        System.out.print("Enter contact name: ");
+        String name = input.nextLine();
+
+        System.out.print("Enter contact phone: ");
+        String phone = input.nextLine();
+
+        try 
+        {
+            phonebook.addContact(name, phone);
+            System.out.println("Contact added successfully!");
+        } 
+        
+        catch (InvalidContactException | DuplicateContactException error) 
+        {
+            System.out.println("Error: " + error.getMessage());
+        }
+    }
+
+    private void searchContactMenu(Scanner input) 
+    {
+        System.out.print("Enter contact name: ");
+        String name = input.nextLine();
+
+        try 
+        {
+            Contact contact = phonebook.searchContact(name);
+            System.out.println(contact);
+        } 
+        
+        catch (ContactNotFoundException error) 
+        {
+            System.out.println("Error: " + error.getMessage());
+        }
+    }
 }
