@@ -23,9 +23,52 @@ public class Phonebook
         return contacts.isEmpty();
     } 
 
-    private boolean validadeCapacity(int capacity)
+    private boolean existsByPhone(String phone)
     {
-        return capacity > 0;
+        for (Contact contact : contacts)
+        {
+            if (contact.getPhone().equalsIgnoreCase(phone.trim()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean existsByName(String name) 
+    {
+        for (Contact contact : contacts) 
+        {
+            if (contact.getName().equalsIgnoreCase(name.trim())) 
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+        
+    public Contact searchContact(int idx)
+        throws ContactNotFoundException {
+
+        isValidIndex(idx);
+
+        return contacts.get(idx);
+    }
+
+    public Contact searchContact(String name)
+        throws ContactNotFoundException {
+
+        for (Contact contact : contacts) 
+        {
+            if (contact.getName().equalsIgnoreCase(name.trim())) 
+            {
+                return contact;
+            }
+        }
+
+        throw new ContactNotFoundException ("No contact found with the given name!!");
     }
 
     public void addContact(String name, String phone)
@@ -53,7 +96,7 @@ public class Phonebook
 
     private boolean isValidIndex(int idx)
     {
-        if (idx < 0 || idx >= this.size)
+        if (idx < 0 || idx >= contacts.size())
         {
             return false;
         }
@@ -106,10 +149,8 @@ public class Phonebook
     }
 
     public void printContact(int idx)
-    {
-        if (isValidIndex(idx))
-        {
-            System.out.println("Nome: " + contacts[idx].getName() + " - Telefone: " + contacts[idx].getPhone());
-        }
+        throws ContactNotFoundException{
+
+        System.out.println(searchContact(idx));
     }
 }
