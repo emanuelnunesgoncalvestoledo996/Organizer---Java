@@ -31,32 +31,6 @@ public class Phonebook
             throw new ContactNotFoundException("Contact not found!");
         }
     }
-
-    private boolean existsByPhone(String phone)
-    {
-        for (Contact contact : contacts)
-        {
-            if (contact.getPhone().equalsIgnoreCase(phone.trim()))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean existsByName(String name) 
-    {
-        for (Contact contact : contacts) 
-        {
-            if (contact.getName().equalsIgnoreCase(name.trim())) 
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
         
     public Contact searchContact(int idx)
         throws ContactNotFoundException {
