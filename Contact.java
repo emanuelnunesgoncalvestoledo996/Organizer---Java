@@ -86,4 +86,34 @@ class Contact
 
         this.phone = phone;
     }
+
+    @Override
+    public String toString() 
+    {
+        return "Name: " + this.name + " - Phone number: " + this.phone;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) 
+        {
+            return true;
+        }
+
+        if (!(obj instanceof Contact)) 
+        {
+            return false;
+        }
+
+        Contact other = (Contact) obj;
+
+        return name.equalsIgnoreCase(other.name) && phone.equals(other.phone);
+    }
+
+    @Override
+    public int hashCode() 
+    {
+        return 31 * name.toLowerCase().hashCode() + phone.hashCode();
+    }
 }
