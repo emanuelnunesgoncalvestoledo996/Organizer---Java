@@ -1,6 +1,6 @@
 import exceptions.InvalidContactException;
 
-class Contact
+public class Contact implements Schedulable
 {
     private String name;
     private String phone;
@@ -117,5 +117,17 @@ class Contact
     public int hashCode() 
     {
         return 31 * name.toLowerCase().hashCode() + phone.hashCode();
+    }
+
+    @Override 
+    public String getIdentifier()
+    {
+        return this.getName();
+    }
+
+    @Override 
+    public String getDetails()
+    {
+        return this.toString();
     }
 }
