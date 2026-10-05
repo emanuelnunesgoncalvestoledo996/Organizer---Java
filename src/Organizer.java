@@ -36,9 +36,39 @@ public class Organizer<T extends Schedulable>
             }
     }
 
+    public T getItem (String identifier)
+        throws ItemNotFoundException{
+            
+            for (T item : items)
+            {
+                if (item.getIdentifier().equalsIgnoreCase(identifier))
+                {
+                    return item;
+                }
+            }
+
+            throw new ItemNotFoundException("Error: Item not found.");
+    }
+
+    public void update (String identifier, T uptadeItem)
+        throws ItemNotFoundException{
+
+            for (int i = 0; i < items.size(); i++)
+            {
+                if (items.get(i).getIdentifier().equalsIgnoreCase(identifier))
+                {
+                    items.set(i,uptadeItem);
+                    return;
+                }
+            }
+
+            throw new ItemNotFoundException("Error: Item not found.");
+    }
+
     // It acts like the printPhonebook, but instead of printing, returns the list
     public List<T> getAllItems()
     {
         return this.items;
     }
+
 }
