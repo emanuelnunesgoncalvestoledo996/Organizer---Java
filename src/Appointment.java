@@ -1,4 +1,6 @@
 import java.util.Objects;
+import exceptions.InvalidItemException;
+
 
 public class Appointment implements Schedulable
 {
@@ -7,10 +9,11 @@ public class Appointment implements Schedulable
     private String time;
     
     public Appointment(String title, String date, String time)
-    {
-        this.title = title;
-        this.date = date;
-        this.time = time;
+        throws InvalidItemException{
+        
+        setTitle(title);
+        setDate(date);
+        setTime(time);
     }
 
     public String getTitle()
@@ -19,7 +22,13 @@ public class Appointment implements Schedulable
     }
 
     public void setTitle(String title)
-    {
+        throws InvalidItemException{
+
+        if (title == null || title.trim().isEmpty())
+        {
+            throw new InvalidItemException("Error: Title cannot be empty");
+        }
+        
         this.title = title;
     }
 
@@ -28,8 +37,14 @@ public class Appointment implements Schedulable
         return date;
     }
 
-    public void setDate(String date)
-    {
+    public void setDate(String date) 
+        throws InvalidItemException {
+        
+        if (date == null || !date.matches("\\d{2}/\\d{2}/\\d{4}")) 
+        {
+            throw new InvalidItemException("Error: Invalid date format. Use DD/MM/YYYY.");
+        }
+
         this.date = date;
     }
 
@@ -39,8 +54,26 @@ public class Appointment implements Schedulable
     }
 
     public void setTime(String time)
+        throws InvalidItemException{
+
+        if (date == null || !time.matches("\\d{2}:\\d{2}"))
+        {
+            throw new InvalidItemException("Error: Invalid time format. Use HH:MM");
+        }
+
+        this.time = time;        
+    }
+
+    @Override 
+    public String getIdentifier()
     {
-        this.time = time;
+        return this.title;
+    }
+
+    @Override 
+    public String getDetails()
+    {
+        return this.toString();
     }
 
     @Override 
@@ -72,17 +105,4 @@ public class Appointment implements Schedulable
     {
         return "Appointment: " + this.title + " | Date: " + this.date + " | Time: " + this.time;
     }
-
-    @Override 
-    public String getIdentifier()
-    {
-        return this.title;
-    }
-
-    @Override 
-    public String getDetails()
-    {
-        return this.toString();
-    }
-
 }
