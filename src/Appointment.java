@@ -67,7 +67,11 @@ public class Appointment implements Schedulable
         return Objects.hash(date,time);
     }
 
-
+    @Override 
+    public String toString()
+    {
+        return "Appointment: " + this.title + " | Date: " + this.date + " | Time: " + this.time;
+    }
 
     @Override 
     public String getIdentifier()
