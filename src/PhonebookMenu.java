@@ -35,19 +35,19 @@ public class PhonebookMenu
             {
                 option = input.nextInt();
                 input.nextLine();
-                if (option < 0 || option > 5)
+                if (option < 0 || option > 6)
                 {
-                    System.out.println("Opção inválida");
+                    System.out.println("Invalid option");
                 }
             }
             else
             {
-                System.out.println("Digite um numero de 0 a 5!");
+                System.out.println("Enter a number from 0 to 6!");
                 input.nextLine();
                 option = -1;
             }
         }
-        while (option < 0 || option > 5);
+        while (option < 0 || option > 6);
 
         return option;
     }

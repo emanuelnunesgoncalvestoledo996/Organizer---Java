@@ -58,7 +58,7 @@ public class Phonebook
     {
         if (contacts.isEmpty()) 
         {
-            System.out.println("A agenda está vazia.");
+            System.out.println("The phonebook is empty.");
             return;
         }
 
