@@ -1,4 +1,4 @@
-public class Appointment 
+public class Appointment implements Schedulable
 {
     private String title;
     private String date;
@@ -39,6 +39,18 @@ public class Appointment
     public void setTime(String time)
     {
         this.time = time;
+    }
+
+    @Override 
+    public String getIdentifier()
+    {
+        return this.title;
+    }
+
+    @Override 
+    public String getDetails()
+    {
+        return this.toString();
     }
 
 }
