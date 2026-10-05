@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Appointment implements Schedulable
 {
     private String title;
@@ -40,6 +42,32 @@ public class Appointment implements Schedulable
     {
         this.time = time;
     }
+
+    @Override 
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+
+        if (!(obj instanceof Appointment))
+        {
+            return true;
+        }
+
+        Appointment other = (Appointment) obj;
+
+        return this.date.equals(other.date) && this.time.equals(other.time);
+    }
+
+    @Override 
+    public int hashCode()
+    {
+        return Objects.hash(date,time);
+    }
+
+
 
     @Override 
     public String getIdentifier()
