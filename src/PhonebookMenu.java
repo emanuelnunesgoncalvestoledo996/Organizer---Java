@@ -1,13 +1,13 @@
 import java.util.Scanner;
-import exceptions.ContactNotFoundException;
-import exceptions.InvalidContactException;
-import exceptions.DuplicateContactException;
+import exceptions.ItemNotFoundException;
+import exceptions.InvalidItemException;
+import exceptions.DuplicateItemException;
 
 public class PhonebookMenu 
 {
-    private Phonebook phonebook;
+    private Organizer phonebook;
 
-    public PhonebookMenu(Phonebook phonebook)
+    public PhonebookMenu(Organizer phonebook)
     {
         this.phonebook = phonebook;
     }
@@ -95,7 +95,7 @@ public class PhonebookMenu
             System.out.println("Contact added successfully!");
         } 
         
-        catch (InvalidContactException | DuplicateContactException error) 
+        catch (InvalidItemException | DuplicateContactException error) 
         {
             System.out.println("Error: " + error.getMessage());
         }
@@ -112,7 +112,7 @@ public class PhonebookMenu
             System.out.println(contact);
         } 
         
-        catch (ContactNotFoundException error) 
+        catch (ItemNotFoundException error) 
         {
             System.out.println("Error: " + error.getMessage());
         }
@@ -139,7 +139,7 @@ public class PhonebookMenu
             phonebook.printContact(idx);
         } 
 
-        catch (ContactNotFoundException error) 
+        catch (ItemNotFoundException error) 
         {
             System.out.println("Error: " + error.getMessage());
         }
@@ -175,7 +175,7 @@ public class PhonebookMenu
 
         }
 
-        catch (ContactNotFoundException | InvalidContactException | DuplicateContactException error)
+        catch (ItemNotFoundException | InvalidItemException | DuplicateContactException error)
         {
             System.out.println("Error: " + error.getMessage());
         }
@@ -205,7 +205,7 @@ public class PhonebookMenu
             System.out.println("Contact removed succesfully!");
         } 
 
-        catch (ContactNotFoundException error) 
+        catch (ItemNotFoundException error) 
         {
             System.out.println("Error: " + error.getMessage());
         }

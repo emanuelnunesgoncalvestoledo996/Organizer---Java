@@ -6,7 +6,7 @@ public class Main
     {
         Scanner input = new Scanner(System.in);
 
-        Phonebook phonebook = new Phonebook();
+        Organizer phonebook = new Organizer();
         PhonebookMenu menu = new PhonebookMenu(phonebook);
 
         menu.run(input);

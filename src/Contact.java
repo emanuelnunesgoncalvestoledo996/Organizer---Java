@@ -1,4 +1,4 @@
-import exceptions.InvalidContactException;
+import exceptions.InvalidItemException;
 
 public class Contact implements Schedulable
 {
@@ -6,16 +6,16 @@ public class Contact implements Schedulable
     private String phone;
 
     public Contact(String name, String phone)
-        throws InvalidContactException{
+        throws InvalidItemException{
 
         if (!validateName(name)) 
         {
-            throw new InvalidContactException("Invalid name!");
+            throw new InvalidItemException("Invalid name!");
         }
 
         if (!validatePhone(phone)) 
         {
-            throw new InvalidContactException("Invalid phone number!");
+            throw new InvalidItemException("Invalid phone number!");
         }
 
         this.name = name.trim();
@@ -68,22 +68,22 @@ public class Contact implements Schedulable
     }
 
     public void setName(String name)
-        throws InvalidContactException{
+        throws InvalidItemException{
         
         if (!validateName(name))
         {
-            throw new InvalidContactException("Invalid name!");
+            throw new InvalidItemException("Invalid name!");
         }
 
         this.name = name;
     }
 
     public void setPhone(String phone)
-        throws InvalidContactException{
+        throws InvalidItemException{
 
         if (!validatePhone(phone))
         {
-            throw new InvalidContactException("Invalid phone!");
+            throw new InvalidItemException("Invalid phone!");
         }
 
         this.phone = phone;
