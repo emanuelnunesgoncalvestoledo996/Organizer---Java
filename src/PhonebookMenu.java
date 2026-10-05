@@ -24,7 +24,7 @@ public class PhonebookMenu
             System.out.println("3 - Search contact");
             System.out.println("4 - Print single contact");
             System.out.println("5 - Update contact");
-            System.out.println("6 - Remove contact")
+            System.out.println("6 - Remove contact");
             System.out.println("0 - Quit");
             System.out.println("=============================");
     
@@ -112,6 +112,99 @@ public class PhonebookMenu
             System.out.println(contact);
         } 
         
+        catch (ContactNotFoundException error) 
+        {
+            System.out.println("Error: " + error.getMessage());
+        }
+    }
+
+    private void printContactMenu(Scanner input) {
+
+        System.out.print("Enter contact number: ");
+
+        if (!input.hasNextInt())
+        {
+            System.out.println("Invalid input!");
+            input.nextLine();
+            return;
+        }
+
+        int idx = input.nextInt();
+        input.nextLine();
+
+        idx--;
+
+        try 
+        {
+            phonebook.printContact(idx);
+        } 
+
+        catch (ContactNotFoundException error) 
+        {
+            System.out.println("Error: " + error.getMessage());
+        }
+    }
+
+
+    private void updateContactMenu(Scanner input) 
+    {
+        System.out.print("Enter contact number: ");
+
+        if (!input.hasNextInt())
+        {
+            System.out.println("Invalid input!");
+            input.nextLine();
+            return;
+        }
+
+        int idx = input.nextInt();
+        input.nextLine();
+
+        idx--;
+
+        System.out.print("Enter the new name: ");
+        String newName = input.nextLine();
+
+        System.out.print("Enter the new phone number: ");
+        String newPhone = input.nextLine();
+
+        try 
+        {
+            phonebook.updateContact(idx,newName,newPhone);
+            System.out.println("Contact updated succesfully!");
+
+        }
+
+        catch (ContactNotFoundException | InvalidContactException | DuplicateContactException error)
+        {
+            System.out.println("Error: " + error.getMessage());
+        }
+    }
+
+    
+    private void removeContactMenu(Scanner input) 
+    {
+        System.out.print("Enter contact number: ");
+
+        if (!input.hasNextInt()) 
+        {
+            System.out.println("Invalid input!");
+            input.nextLine();
+
+            return;
+        }
+
+        int idx = input.nextInt();
+        input.nextLine();
+
+        idx--;
+
+        try 
+        {
+            phonebook.removeContact(idx);
+            System.out.println("Contact removed succesfully!");
+        } 
+
         catch (ContactNotFoundException error) 
         {
             System.out.println("Error: " + error.getMessage());
