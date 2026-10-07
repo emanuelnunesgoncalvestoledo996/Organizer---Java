@@ -16,47 +16,6 @@ public class OrganizerMenu
         this.scanner = new Scanner(System.in);
     }
 
-
-    private static int menu(Scanner input)
-    {
-        int option;
-
-        do
-        {
-            System.out.println("\n========== PHONEBOOK ==========");
-            System.out.println("1 - Add contact");
-            System.out.println("2 - Print phonebook");
-            System.out.println("3 - Search contact");
-            System.out.println("4 - Print single contact");
-            System.out.println("5 - Update contact");
-            System.out.println("6 - Remove contact");
-            System.out.println("0 - Quit");
-            System.out.println("=============================");
-    
-            System.out.print("Choose an option: ");
-
-            
-            if (input.hasNextInt())
-            {
-                option = input.nextInt();
-                input.nextLine();
-                if (option < 0 || option > 6)
-                {
-                    System.out.println("Invalid option");
-                }
-            }
-            else
-            {
-                System.out.println("Enter a number from 0 to 6!");
-                input.nextLine();
-                option = -1;
-            }
-        }
-        while (option < 0 || option > 6);
-
-        return option;
-    }
-
     public void start()
     {
         int option = 0;
@@ -97,10 +56,131 @@ public class OrganizerMenu
 
     private void manageContacts()
     {
-        System.out.println("\n --- CONTACTS MENU ---");
-        System.out.println("1. Add Contact");
-        System.out.println("2. List all Contacts");
-        System.out.println("3. Return to Main Menu");
+        int option = 0;
+
+        do
+        {
+            System.out.println("\n --- CONTACTS MENU ---");
+            System.out.println("1. Add Contact");
+            System.out.println("2. List all Contacts");
+            System.out.println("3. Remove Contact");
+            System.out.println("4. Update Contact");
+            System.out.println("5. Return to Main Menu");
+            System.out.print("Choose an option");
+            
+            try
+            {
+                option = Integer.parseInt(scanner.nextLine());
+
+                switch (option)
+                {
+                    case 1:
+                        addContactFlow();
+                        break;
+                    case 2:
+                        listContactFlow();
+                        break;
+                    case 3:
+                        removeContactFlow();
+                        break;
+                    case 4:
+                        updateContactFlow();
+                        break;
+                    case 5:
+                        System.out.println("Return to Main Menu");
+                        break;
+                    default:
+                        System.out.println("Invalid option. Try again.");
+                }
+            }
+
+            catch (NumberFormatException e)
+            {
+                System.out.println("Error: Please enter a valid number.");
+            }
+        } while (option != 5);
+    }
+
+    private void addContactFlow()
+    {
+        System.out.println("Enter contact name: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter contact phone number: ");
+        String phone = scanner.nextLine();
+
+        try 
+        {
+            Contact newContact = new Contact(name, phone);
+
+            contactOrganizer.add(newContact);
+
+            System.out.println("Success: Contact added");
+        }
+
+        catch (InvalidItemException | DuplicateItemException e)
+        {
+           System.out.println(e.getMessage());
+        }
+    }
+
+    private void listContactFlow()
+    {
+        System.out.println("\n --- Contact List ---");
+
+        if (contactOrganizer.getAllItems().isEmpty())
+        {
+            System.out.println("The contact list is empty.");
+            return;
+        }
+
+        for (Contact contact : contactOrganizer.getAllItems())
+        {
+            System.out.println(contact.getDetails());
+        }
+    }
+
+    private void removeContactFlow()
+    {
+        System.out.println("Enter the name of the contact you wish to remove: ");
+        String name = scanner.nextLine();
+
+        try
+        {
+            contactOrganizer.remove(name);
+            System.out.println("Success: contact removed");
+        }
+
+        catch (ItemNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void updateContactFlow()
+    {
+        System.out.print("Enter the current name of the contact you wish to update: ");
+        String currentName = scanner.nextLine();
+
+        System.out.print("Enter the new contact name: ");
+        String newName = scanner.nextLine();
+
+        System.out.print("Enter the new phone number contact: ");
+        String newPhone = scanner.nextLine();
+
+        try
+        {
+            Contact updatedContact = new Contact(newName, newPhone);
+
+            contactOrganizer.update(currentName, updatedContact);
+
+            System.out.println("Success: contact updated");
+        }
+
+        catch (ItemNotFoundException | InvalidItemException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void manageAppointments()
@@ -111,162 +191,5 @@ public class OrganizerMenu
         System.out.println("3. Return to Main Menu");
     }
 
-    public void run(Scanner input)
-    {
-        int option;
-
-        do
-        {
-            option = menu(input);
-
-            switch(option)
-            {
-                case 1: addContactMenu(input); 
-                    break;
-                case 2: phonebook.printPhonebook(); 
-                    break;
-                case 3: searchContactMenu(input);
-                    break;
-                case 4: printContactMenu(input);
-                    break;
-                case 5: updateContactMenu(input);
-                    break;
-                case 6: removeContactMenu(input);
-                    break;
-                case 0: System.out.println("Closing Phonebook");
-                    break;
-            }
-        } while (option != 0);
-
-    }
-
-    private void addContactMenu(Scanner input) 
-    {
-        System.out.print("Enter contact name: ");
-        String name = input.nextLine();
-
-        System.out.print("Enter contact phone: ");
-        String phone = input.nextLine();
-
-        try 
-        {
-            phonebook.addContact(name, phone);
-            System.out.println("Contact added successfully!");
-        } 
-        
-        catch (InvalidItemException | DuplicateContactException error) 
-        {
-            System.out.println("Error: " + error.getMessage());
-        }
-    }
-
-    private void searchContactMenu(Scanner input) 
-    {
-        System.out.print("Enter contact name: ");
-        String name = input.nextLine();
-
-        try 
-        {
-            Contact contact = phonebook.searchContact(name);
-            System.out.println(contact);
-        } 
-        
-        catch (ItemNotFoundException error) 
-        {
-            System.out.println("Error: " + error.getMessage());
-        }
-    }
-
-    private void printContactMenu(Scanner input) {
-
-        System.out.print("Enter contact number: ");
-
-        if (!input.hasNextInt())
-        {
-            System.out.println("Invalid input!");
-            input.nextLine();
-            return;
-        }
-
-        int idx = input.nextInt();
-        input.nextLine();
-
-        idx--;
-
-        try 
-        {
-            phonebook.printContact(idx);
-        } 
-
-        catch (ItemNotFoundException error) 
-        {
-            System.out.println("Error: " + error.getMessage());
-        }
-    }
-
-
-    private void updateContactMenu(Scanner input) 
-    {
-        System.out.print("Enter contact number: ");
-
-        if (!input.hasNextInt())
-        {
-            System.out.println("Invalid input!");
-            input.nextLine();
-            return;
-        }
-
-        int idx = input.nextInt();
-        input.nextLine();
-
-        idx--;
-
-        System.out.print("Enter the new name: ");
-        String newName = input.nextLine();
-
-        System.out.print("Enter the new phone number: ");
-        String newPhone = input.nextLine();
-
-        try 
-        {
-            phonebook.updateContact(idx,newName,newPhone);
-            System.out.println("Contact updated succesfully!");
-
-        }
-
-        catch (ItemNotFoundException | InvalidItemException | DuplicateContactException error)
-        {
-            System.out.println("Error: " + error.getMessage());
-        }
-    }
-
-    
-    private void removeContactMenu(Scanner input) 
-    {
-        System.out.print("Enter contact number: ");
-
-        if (!input.hasNextInt()) 
-        {
-            System.out.println("Invalid input!");
-            input.nextLine();
-
-            return;
-        }
-
-        int idx = input.nextInt();
-        input.nextLine();
-
-        idx--;
-
-        try 
-        {
-            phonebook.removeContact(idx);
-            System.out.println("Contact removed succesfully!");
-        } 
-
-        catch (ItemNotFoundException error) 
-        {
-            System.out.println("Error: " + error.getMessage());
-        }
-    }
 }
+
