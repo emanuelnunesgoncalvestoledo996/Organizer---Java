@@ -1,16 +1,16 @@
-import java.util.Scanner;
-
 public class Main 
 {
     public static void main(String[] args) 
     {
-        Scanner input = new Scanner(System.in);
+        System.out.println("Starting Personal Organizer System!");
 
-        Organizer phonebook = new Organizer();
-        PhonebookMenu menu = new PhonebookMenu(phonebook);
+        Organizer <Contact> contactOrganizer = new Organizer<>();
+        Organizer <Appointment> appointmentOrganizer = new Organizer<>();
 
-        menu.run(input);
+        OrganizerMenu menu = new OrganizerMenu(contactOrganizer, appointmentOrganizer);
 
-        input.close();
+        menu.start();
+
+        System.out.println("System shut down.");
     }
 }
