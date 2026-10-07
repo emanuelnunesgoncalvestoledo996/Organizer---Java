@@ -57,6 +57,60 @@ public class OrganizerMenu
         return option;
     }
 
+    public void start()
+    {
+        int option = 0;
+        do
+        {
+            System.out.println("\n=== ORGANIZER MAIN MENU ===");
+            System.out.println("1. Manage Contacts");
+            System.out.println("2. Manage Appointments");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option");
+
+            try 
+            {
+                option = Integer.parseInt(scanner.nextLine());
+
+                switch (option)
+                {
+                    case 1:
+                        manageContacts();
+                        break;
+                    case 2:
+                        manageAppointments();
+                        break;
+                    case 3:
+                        System.out.println("Closing organizer...");
+                        break;
+                    default:
+                        System.out.println("Invalid option. Try again.");
+                } 
+            }
+
+            catch (NumberFormatException e)
+            {
+                System.out.println("Error. Please enter a valid number.");
+            }
+        } while (option != 3);
+    }
+
+    private void manageContacts()
+    {
+        System.out.println("\n --- CONTACTS MENU ---");
+        System.out.println("1. Add Contact");
+        System.out.println("2. List all Contacts");
+        System.out.println("3. Return to Main Menu");
+    }
+
+    private void manageAppointments()
+    {
+        System.out.println("\n --- APPOINTMENT MENU ---");
+        System.out.println("1. Add Appointment");
+        System.out.println("2. List all Appointments");
+        System.out.println("3. Return to Main Menu");
+    }
+
     public void run(Scanner input)
     {
         int option;
