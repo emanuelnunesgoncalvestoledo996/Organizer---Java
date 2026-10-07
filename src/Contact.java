@@ -32,7 +32,6 @@ public class Contact implements Schedulable
         {
             if (Character.isDigit(name.charAt(i)))
             {
-                System.out.println("Numbers are not allowed in names");
                 return false;
             }
         }
@@ -72,7 +71,7 @@ public class Contact implements Schedulable
         
         if (!validateName(name))
         {
-            throw new InvalidItemException("Invalid name!");
+            throw new InvalidItemException("Error: Invalid name format!");
         }
 
         this.name = name;
@@ -83,7 +82,7 @@ public class Contact implements Schedulable
 
         if (!validatePhone(phone))
         {
-            throw new InvalidItemException("Invalid phone!");
+            throw new InvalidItemException("Error: Invalid phone format!");
         }
 
         this.phone = phone;
