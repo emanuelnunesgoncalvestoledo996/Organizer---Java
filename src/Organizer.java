@@ -31,7 +31,7 @@ public class Organizer<T extends Schedulable>
 
             if (!removed)
             {
-                throw new ItemNotFoundException("Error: Item not found in agenda.");
+                throw new ItemNotFoundException("Error: Item not found.");
             }
     }
 

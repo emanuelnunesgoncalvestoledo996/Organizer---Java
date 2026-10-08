@@ -25,7 +25,7 @@ public class OrganizerMenu
             System.out.println("1. Manage Contacts");
             System.out.println("2. Manage Appointments");
             System.out.println("3. Exit");
-            System.out.print("Choose an option");
+            System.out.print("Choose an option: ");
 
             try 
             {
@@ -66,7 +66,7 @@ public class OrganizerMenu
             System.out.println("3. Remove Contact");
             System.out.println("4. Update Contact");
             System.out.println("5. Return to Main Menu");
-            System.out.print("Choose an option");
+            System.out.print("Choose an option: ");
             
             try
             {
@@ -188,6 +188,7 @@ public class OrganizerMenu
         int option = 0;
         do
         {
+            System.out.println("\n --- APPOINTMENT MENU ---");
             System.out.println("1. Add Appointment");
             System.out.println("2. List all Appointments");
             System.out.println("3. Remove Appointment");

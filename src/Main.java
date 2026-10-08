@@ -11,6 +11,6 @@ public class Main
 
         menu.start();
 
-        System.out.println("System shut down.");
+        System.out.println("System shut down.\n");
     }
 }
