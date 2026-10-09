@@ -48,12 +48,12 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="My Tasks">
+            <Label layoutX="299.0" text="My Tasks">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView layoutX="15.0" layoutY="60.0" prefHeight="653.0" prefWidth="698.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <ListView layoutX="15.0" layoutY="60.0" prefHeight="653.0" prefWidth="698.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0" />
          </children>
       </AnchorPane>
    </center>
