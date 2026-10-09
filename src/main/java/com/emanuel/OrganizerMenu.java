@@ -1,8 +1,8 @@
 package com.emanuel;
 import java.util.Scanner;
-import exceptions.ItemNotFoundException;
-import exceptions.InvalidItemException;
-import exceptions.DuplicateItemException;
+import com.emanuel.exceptions.ItemNotFoundException;
+import com.emanuel.exceptions.InvalidItemException;
+import com.emanuel.exceptions.DuplicateItemException;
 
 public class OrganizerMenu 
 {

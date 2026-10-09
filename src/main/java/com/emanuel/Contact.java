@@ -1,5 +1,5 @@
 package com.emanuel;
-import exceptions.InvalidItemException;
+import com.emanuel.exceptions.InvalidItemException;
 
 public class Contact implements Schedulable
 {

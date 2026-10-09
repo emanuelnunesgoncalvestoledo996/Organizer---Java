@@ -1,18 +1,30 @@
 package com.emanuel;
 
-public class Main 
-{
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        
+        Label label = new Label("Hello, JavaFX! A interface gráfica está viva!");
+
+        StackPane root = new StackPane();
+        root.getChildren().add(label);
+
+        Scene scene = new Scene(root, 400, 300);
+
+        primaryStage.setTitle("Personal Organizer");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     public static void main(String[] args) 
     {
-        System.out.println("Starting Personal Organizer System!");
-
-        Organizer <Contact> contactOrganizer = new Organizer<>();
-        Organizer <Appointment> appointmentOrganizer = new Organizer<>();
-
-        OrganizerMenu menu = new OrganizerMenu(contactOrganizer, appointmentOrganizer);
-
-        menu.start();
-
-        System.out.println("System shut down.\n");
+        launch(args);
     }
 }

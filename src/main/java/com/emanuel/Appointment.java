@@ -1,6 +1,6 @@
 package com.emanuel;
 import java.util.Objects;
-import exceptions.InvalidItemException;
+import com.emanuel.exceptions.InvalidItemException;
 
 
 public class Appointment implements Schedulable

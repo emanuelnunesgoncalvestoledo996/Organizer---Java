@@ -1,8 +1,8 @@
 package com.emanuel;
 import java.util.ArrayList;
 import java.util.List;
-import exceptions.DuplicateItemException;
-import exceptions.ItemNotFoundException;
+import com.emanuel.exceptions.DuplicateItemException;
+import com.emanuel.exceptions.ItemNotFoundException;
 
 public class Organizer<T extends Schedulable>
 {
