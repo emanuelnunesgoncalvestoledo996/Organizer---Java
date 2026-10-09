@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emanuel.MainController">
    <left>
       <VBox alignment="CENTER_LEFT" prefHeight="686.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Tasks">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onTasksButtonClick" text="Tasks">
                <font>
                   <Font size="16.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Calendar">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCalendarButtonClick" text="Calendar">
                <font>
                   <Font size="16.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Notes">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onNotesButtonClick" text="Notes">
                <font>
                   <Font size="16.0" />
                </font>
