@@ -1,3 +1,5 @@
+package com.emanuel;
+
 public interface Schedulable
 {
     // returns the main search term

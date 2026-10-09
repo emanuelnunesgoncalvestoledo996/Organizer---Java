@@ -1,3 +1,4 @@
+package com.emanuel;
 import java.util.Objects;
 import exceptions.InvalidItemException;
 

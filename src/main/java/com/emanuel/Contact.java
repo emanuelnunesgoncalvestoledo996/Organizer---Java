@@ -1,3 +1,4 @@
+package com.emanuel;
 import exceptions.InvalidItemException;
 
 public class Contact implements Schedulable

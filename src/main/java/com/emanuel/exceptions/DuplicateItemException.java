@@ -1,4 +1,4 @@
-package exceptions;
+package com.emanuel.exceptions;
 
 public class DuplicateItemException extends Exception
 {

@@ -1,3 +1,4 @@
+package com.emanuel;
 import java.util.Scanner;
 import exceptions.ItemNotFoundException;
 import exceptions.InvalidItemException;
