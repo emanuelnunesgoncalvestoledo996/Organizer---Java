@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Button layoutX="435.0" layoutY="319.0" mnemonicParsing="false" text="Button" />
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="686.0" prefWidth="126.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Tasks" />
+            <Button mnemonicParsing="false" text="Calendar" />
+            <Button mnemonicParsing="false" text="Notes" />
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
