@@ -13,9 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.Optional;
+
 
 import com.emanuel.Contact;
 import com.emanuel.Appointment;
@@ -82,7 +84,8 @@ public class ManagementController {
                 refreshUI(); 
             } 
             
-            catch (InvalidItemException | DuplicateItemException e) { 
+            catch (InvalidItemException | DuplicateItemException e) 
+            { 
                 showAlert("Validation Error", e.getMessage());
             }
         } 
@@ -104,7 +107,8 @@ public class ManagementController {
                 refreshUI();
             } 
             
-            catch (InvalidItemException | DuplicateItemException e) {
+            catch (InvalidItemException | DuplicateItemException e) 
+            {
                 showAlert("Validation Error", e.getMessage());
             }
         }
@@ -117,10 +121,14 @@ public class ManagementController {
 
         if (selectedItem != null) 
         {
-            try {
+            try 
+            {
                 currentOrganizer.remove(selectedItem.getIdentifier());
                 refreshUI();
-            } catch (ItemNotFoundException e) {
+            } 
+            
+            catch (ItemNotFoundException e) 
+            {
                 showAlert("Error", e.getMessage());
             }
         } 
@@ -174,7 +182,8 @@ public class ManagementController {
                     refreshUI();
                 } 
                 
-                catch (InvalidItemException | ItemNotFoundException e) {
+                catch (InvalidItemException | ItemNotFoundException e)
+                {
                     showAlert("Validation Error", e.getMessage());
                 }
             }
@@ -227,5 +236,11 @@ public class ManagementController {
         {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void onBackgroundClick(javafx.scene.input.MouseEvent event)
+    {
+        recordsListView.getSelectionModel().clearSelection();
     }
 }

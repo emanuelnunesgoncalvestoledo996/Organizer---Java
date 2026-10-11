@@ -89,7 +89,6 @@ public class MainController
         System.exit(0);
     }
 
-    // Agora passamos o Organizer<?>
     private void openManagementView(ActionEvent event, String type, Organizer<?> organizer) 
     {
         try 

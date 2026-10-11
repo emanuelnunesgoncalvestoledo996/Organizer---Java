@@ -1,0 +1,111 @@
+.root 
+{
+    -fx-background-color: #2b2b2b;
+}
+
+
+.label 
+{
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 14px;
+}
+
+
+#titleLabel
+{
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+
+.button 
+{
+    -fx-background-color: #3a3f44;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8; /* Bordas arredondadas */
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+
+.button:hover 
+{
+    -fx-background-color: #5bc0de;/* Azul claro elegante */
+    -fx-text-fill: #1a1a1a;
+}
+
+#exitButton 
+{
+    -fx-background-color: #d9534f;
+}
+
+
+#exitButton:hover 
+{
+    -fx-background-color: #c9302c;
+}
+
+.welcome-text 
+{
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.list-view 
+{
+    -fx-background-color: #3a3f44;
+    -fx-border-color: #1a1a1a;    
+    -fx-border-radius: 8px;        
+    -fx-background-radius: 8px;    
+    -fx-padding: 2px;
+}
+
+.list-cell 
+{
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;  
+    -fx-font-size: 14px;
+    -fx-padding: 8px;
+}
+
+.list-cell:filled:hover 
+{
+    -fx-background-color: #4a5056;
+}
+
+
+.list-view .scroll-bar:vertical, .list-view .scroll-bar:horizontal 
+{
+    -fx-background-color: transparent;
+}
+
+
+.list-view .scroll-bar:vertical .track, .list-view .scroll-bar:horizontal .track 
+{
+    -fx-background-color: #2b2b2b;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+}
+
+
+.list-view .scroll-bar:vertical .thumb, .list-view .scroll-bar:horizontal .thumb 
+{
+    -fx-background-color: #5bc0de;
+    -fx-background-radius: 8px;
+}
+
+.list-view .scroll-bar .increment-button, .list-view .scroll-bar .decrement-button {
+    -fx-padding: 0;
+}
+
+.list-view:focused .list-cell:filled:selected, .list-cell:filled:selected,
+.list-cell:filled:selected:focused {
+    -fx-background-color: #5bc0de; 
+    -fx-text-fill: #1a1a1a;      
+    -fx-font-weight: bold;      
+}
