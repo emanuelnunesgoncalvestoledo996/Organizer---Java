@@ -32,7 +32,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a93226; -fx-text-fill: white; -fx-cursor: hand;" text="Exit">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onExitButtonClick" style="-fx-background-color: #a93226; -fx-text-fill: white; -fx-cursor: hand;" text="Exit">
                <font>
                   <Font size="14.0" />
                </font>
