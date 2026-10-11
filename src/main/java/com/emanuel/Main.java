@@ -1,28 +1,23 @@
 package com.emanuel;
 
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     @Override
-    public void start(Stage stage) throws Exception 
-    {
-        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        Scene scene = new Scene(root);
+    public void start(Stage primaryStage) 
+        throws Exception {
+            
+        Parent root = FXMLLoader.load(getClass().getResource("/com/emanuel/MainView.fxml"));
+        primaryStage.setTitle("Organizer");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 
-        stage.setTitle("Personal Organizer");
-        stage.setScene(scene);
-        stage.show();
-}
-
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         launch(args);
     }
 }
