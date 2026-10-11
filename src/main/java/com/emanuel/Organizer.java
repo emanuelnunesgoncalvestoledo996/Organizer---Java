@@ -65,7 +65,6 @@ public class Organizer<T extends Schedulable>
             throw new ItemNotFoundException("Error: Item not found.");
     }
 
-    // It acts like the printPhonebook, but instead of printing, returns the list
     public List<T> getAllItems()
     {
         return this.items;

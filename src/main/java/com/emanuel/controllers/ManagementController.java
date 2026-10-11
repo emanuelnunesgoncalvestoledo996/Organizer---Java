@@ -13,6 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -65,6 +68,21 @@ public class ManagementController {
         return result.orElse(null); 
     }
 
+    private void showSuccessAlert(String message) 
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        // Define o cronómetro para 2 segundos
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(event -> alert.close());
+
+        alert.show();
+        delay.play();
+    }
+
     @FXML
     public void onAddClick(ActionEvent event) 
     {
@@ -80,6 +98,7 @@ public class ManagementController {
             {
                 Contact newContact = new Contact(name, phone);
                 currentOrganizer.add(newContact); 
+                showSuccessAlert("Contact added successfully");
                 refreshUI(); 
             } 
             
@@ -87,6 +106,7 @@ public class ManagementController {
             { 
                 showAlert("Validation Error", e.getMessage());
             }
+            
         } 
         else if (currentType.equals("Appointments"))
         {
@@ -103,6 +123,7 @@ public class ManagementController {
             {
                 Appointment newAppointment = new Appointment(title, date, time);
                 currentOrganizer.add(newAppointment);
+                showSuccessAlert("Appointment added successfully");
                 refreshUI();
             } 
             
@@ -123,6 +144,7 @@ public class ManagementController {
             try 
             {
                 currentOrganizer.remove(selectedItem.getIdentifier());
+                showSuccessAlert("Item removed successfully");
                 refreshUI();
             } 
             
@@ -156,6 +178,7 @@ public class ManagementController {
                 {
                     Contact updatedContact = new Contact(name, phone);
                     currentOrganizer.update(selectedItem.getIdentifier(), updatedContact);
+                    showSuccessAlert("Contact updated successfully");
                     refreshUI();
                 } 
                 
@@ -178,6 +201,7 @@ public class ManagementController {
                 {
                     Appointment updatedAppointment = new Appointment(title, date, time);
                     currentOrganizer.update(selectedItem.getIdentifier(), updatedAppointment);
+                    showSuccessAlert("Appointment updated successfully");
                     refreshUI();
                 } 
                 
