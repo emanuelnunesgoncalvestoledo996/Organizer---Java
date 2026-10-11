@@ -1,4 +1,4 @@
-package com.emanuel;
+package com.emanuel.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
