@@ -2,6 +2,10 @@ package com.emanuel;
 import java.util.Objects;
 import com.emanuel.exceptions.InvalidItemException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class Appointment implements Schedulable
 {
@@ -46,6 +50,26 @@ public class Appointment implements Schedulable
             throw new InvalidItemException("Error: Invalid date format. Use DD/MM/YYYY.");
         }
 
+        try 
+        {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            LocalDate appointmentDate = LocalDate.parse(date, formatter);
+            
+            LocalDate today = LocalDate.now();
+            
+            if (appointmentDate.isBefore(today)) 
+            {
+                throw new InvalidItemException("Error: The appointment date cannot be in the past.");
+            }
+            
+        } 
+        
+        catch (DateTimeParseException e) 
+        {
+            throw new InvalidItemException("Error: Invalid date values (e.g., day or month out of range).");
+        }
+
         this.date = date;
     }
 
@@ -57,9 +81,9 @@ public class Appointment implements Schedulable
     public void setTime(String time)
         throws InvalidItemException{
 
-        if (date == null || !time.matches("\\d{2}:\\d{2}"))
+        if (time == null || !time.matches("([01]\\d|2[0-3]):[0-5]\\d"))
         {
-            throw new InvalidItemException("Error: Invalid time format. Use HH:MM");
+            throw new InvalidItemException("Error: Invalid time format or out of bounds. Use HH:MM (00:00 to 23:59).");
         }
 
         this.time = time;        

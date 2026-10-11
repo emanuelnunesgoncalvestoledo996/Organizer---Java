@@ -145,11 +145,14 @@ public class ManagementController {
                 String phone = askInput("Update Contact", "New Phone:");
                 if (phone == null) return;
 
-                try {
+                try 
+                {
                     Contact updatedContact = new Contact(name, phone);
                     currentOrganizer.update(selectedItem.getIdentifier(), updatedContact);
                     refreshUI();
-                } catch (InvalidItemException | ItemNotFoundException e) {
+                } 
+                
+                catch (InvalidItemException | ItemNotFoundException e) {
                     showAlert("Validation Error", e.getMessage());
                 }
             } 
@@ -164,11 +167,14 @@ public class ManagementController {
                 String time = askInput("Update Appointment", "New Time:");
                 if (time == null) return;
 
-                try {
+                try 
+                {
                     Appointment updatedAppointment = new Appointment(title, date, time);
                     currentOrganizer.update(selectedItem.getIdentifier(), updatedAppointment);
                     refreshUI();
-                } catch (InvalidItemException | ItemNotFoundException e) {
+                } 
+                
+                catch (InvalidItemException | ItemNotFoundException e) {
                     showAlert("Validation Error", e.getMessage());
                 }
             }
