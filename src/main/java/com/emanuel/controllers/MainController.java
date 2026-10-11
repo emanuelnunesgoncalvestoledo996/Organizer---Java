@@ -77,10 +77,17 @@ public class MainController
         openManagementView(event, "Appointments", appointmentOrganizer);
     }
 
+    public static void saveAllData() {
+        System.out.println("Saving data to CSV...");
+        csvManager.saveContacts(contactOrganizer.getAllItems());
+        csvManager.saveAppointments(appointmentOrganizer.getAllItems());
+    }
+
     @FXML
     public void onExitButtonClick() 
     {
         System.out.println("Saving data.");
+        saveAllData();
 
         csvManager.saveContacts(contactOrganizer.getAllItems());
         csvManager.saveAppointments(appointmentOrganizer.getAllItems());

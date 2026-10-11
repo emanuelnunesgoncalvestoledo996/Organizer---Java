@@ -17,6 +17,8 @@ public class Main extends Application {
 
         scene.getStylesheets().add(getClass().getResource("/com/emanuel/style.css").toExternalForm());
 
+        primaryStage.setOnCloseRequest(event -> {com.emanuel.controllers.MainController.saveAllData();});
+
         primaryStage.setTitle("Organizer");
         primaryStage.setScene(scene);
         primaryStage.show();
