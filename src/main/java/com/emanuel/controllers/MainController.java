@@ -1,10 +1,9 @@
 package com.emanuel.controllers;
 
 import com.emanuel.Contact; 
-import com.emanuel.Appointment; 
+import com.emanuel.Appointment;
+import com.emanuel.Organizer; // Importe o Organizer!
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,29 +16,30 @@ import java.io.IOException;
 
 public class MainController 
 {
-
-    private static ObservableList<Contact> contactsList = FXCollections.observableArrayList();
-    private static ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
+    private static Organizer<Contact> contactOrganizer = new Organizer<>();
+    private static Organizer<Appointment> appointmentOrganizer = new Organizer<>();
 
     @FXML
     public void onContactsButtonClick(ActionEvent event) 
     {
-        openManagementView(event, "Contacts", contactsList);
+        openManagementView(event, "Contacts", contactOrganizer);
     }
 
     @FXML
     public void onAppointmentsButtonClick(ActionEvent event) 
     {
-        openManagementView(event, "Appointments", appointmentsList);
+        openManagementView(event, "Appointments", appointmentOrganizer);
     }
 
     @FXML
-    public void onExitButtonClick() {
+    public void onExitButtonClick() 
+    {
         System.out.println("Saving data (simulated) and exiting...");
         System.exit(0);
     }
 
-    private void openManagementView(ActionEvent event, String type, ObservableList<?> list) 
+    // Agora passamos o Organizer<?>
+    private void openManagementView(ActionEvent event, String type, Organizer<?> organizer) 
     {
         try 
         {
@@ -47,7 +47,7 @@ public class MainController
             Parent root = loader.load();
 
             ManagementController controller = loader.getController();
-            controller.initData(type, list);
+            controller.initData(type, organizer);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
