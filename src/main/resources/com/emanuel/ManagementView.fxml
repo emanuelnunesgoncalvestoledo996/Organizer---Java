@@ -23,27 +23,27 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Label>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;" text="Add">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddClick" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;" text="Add">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-cursor: hand;" text="Remove">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onRemoveClick" style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-cursor: hand;" text="Remove">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #d35400; -fx-text-fill: white; -fx-cursor: hand;" text="Update">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUpdateClick" style="-fx-background-color: #d35400; -fx-text-fill: white; -fx-cursor: hand;" text="Update">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-cursor: hand;" text="Print">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPrintClick" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-cursor: hand;" text="Print">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-cursor: hand;" text="Back to Menu">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBackToMenuClick" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-cursor: hand;" text="Back to Menu">
                <font>
                   <Font size="13.0" />
                </font>

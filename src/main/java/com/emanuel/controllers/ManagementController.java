@@ -23,7 +23,8 @@ public class ManagementController {
     private List<?> currentList;
     private String currentType;
 
-    public void initData(String type, List<?> list) {
+    public void initData(String type, List<?> list) 
+    {
         this.currentType = type;
         this.currentList = list;
         this.sectionTitleLabel.setText(type);
@@ -33,13 +34,42 @@ public class ManagementController {
     }
 
     @FXML
-    public void onBackToMenuClick(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+    public void onAddClick(ActionEvent event) 
+    {
+        System.out.println("Action: ADD triggered for " + currentType);
+    }
+
+    @FXML
+    public void onRemoveClick(ActionEvent event) 
+    {
+        System.out.println("Action: REMOVE triggered for " + currentType);
+    }
+
+    @FXML
+    public void onUpdateClick(ActionEvent event) 
+    {
+        System.out.println("Action: UPDATE triggered for " + currentType);
+    }
+
+    @FXML
+    public void onPrintClick(ActionEvent event) 
+    {
+        System.out.println("Action: PRINT triggered for " + currentType);
+    }
+
+    @FXML
+    public void onBackToMenuClick(ActionEvent event) 
+    {
+        try 
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/emanuel/MainView.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
+        } 
+        
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
     }

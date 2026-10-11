@@ -22,12 +22,14 @@ public class MainController
     private static List<Appointment> appointmentsList = new ArrayList<>();
 
     @FXML
-    public void onContactsButtonClick(ActionEvent event) {
+    public void onContactsButtonClick(ActionEvent event) 
+    {
         openManagementView(event, "Contacts", contactsList);
     }
 
     @FXML
-    public void onAppointmentsButtonClick(ActionEvent event) {
+    public void onAppointmentsButtonClick(ActionEvent event) 
+    {
         openManagementView(event, "Appointments", appointmentsList);
     }
 
@@ -37,9 +39,11 @@ public class MainController
         System.exit(0);
     }
 
-    private void openManagementView(ActionEvent event, String type, List<?> list) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ManagementView.fxml"));
+    private void openManagementView(ActionEvent event, String type, List<?> list) 
+    {
+        try 
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/emanuel/ManagementView.fxml"));
             Parent root = loader.load();
 
             ManagementController controller = loader.getController();
@@ -48,7 +52,10 @@ public class MainController
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
+        } 
+        
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
     }
