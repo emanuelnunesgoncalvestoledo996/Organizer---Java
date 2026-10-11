@@ -1,5 +1,10 @@
 package com.emanuel.controllers;
 
+import com.emanuel.Contact; 
+import com.emanuel.Appointment; 
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,17 +14,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.emanuel.Appointment;
-import com.emanuel.Contact;
 
 public class MainController 
 {
 
-    private static List<Contact> contactsList = new ArrayList<>();
-    private static List<Appointment> appointmentsList = new ArrayList<>();
+    private static ObservableList<Contact> contactsList = FXCollections.observableArrayList();
+    private static ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
 
     @FXML
     public void onContactsButtonClick(ActionEvent event) 
@@ -39,7 +39,7 @@ public class MainController
         System.exit(0);
     }
 
-    private void openManagementView(ActionEvent event, String type, List<?> list) 
+    private void openManagementView(ActionEvent event, String type, ObservableList<?> list) 
     {
         try 
         {
