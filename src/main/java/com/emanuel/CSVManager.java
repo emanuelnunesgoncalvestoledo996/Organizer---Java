@@ -17,14 +17,24 @@ public class CSVManager
     private static final String CONTACTS_FILE = FOLDER_PATH + File.separator + "contacts.csv";
     private static final String APPOINTMENTS_FILE = FOLDER_PATH + File.separator + "appointments.csv";
 
+    private List<String> loadWarnings;
+
     public CSVManager()
     {
+        this.loadWarnings = new ArrayList<>();
         File folder = new File(FOLDER_PATH);
 
         if (!folder.exists())
         {
             folder.mkdirs();
         }
+    }
+
+    public List<String> getAndClearWarnings()
+    {
+        List<String> warningsToReturn = new ArrayList<>(this.loadWarnings);
+        this.loadWarnings.clear();
+        return warningsToReturn;
     }
 
     public void saveContacts(List<Contact> contacts) 
@@ -83,7 +93,7 @@ public class CSVManager
                     
                     catch (InvalidItemException e) 
                     {
-                        System.out.println("Skipped corrupted contact line: " + line);
+                        loadWarnings.add("Contact skipped: " + parts[0] + e.getMessage());
                     }
                 }
             }
@@ -119,7 +129,7 @@ public class CSVManager
                     
                     catch (InvalidItemException e)
                     {
-                        System.out.println("Skipped corrupted appointment line: " + line);
+                        loadWarnings.add("Appointment skipped: " + parts[0] + e.getMessage());
                     }
                 }
             }

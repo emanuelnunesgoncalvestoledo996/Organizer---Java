@@ -13,8 +13,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainController 
 {
@@ -40,6 +42,17 @@ public class MainController
                 }
                 
                 isDataLoaded = true; 
+
+                List<String> warnings = csvManager.getAndClearWarnings();
+                if (!warnings.isEmpty())
+                {
+                    StringBuilder warningMessage = new StringBuilder("The following corrupted items were skipped and removed:\n\n");
+                    for (String w : warnings)
+                    {
+                        warningMessage.append(" - ").append(w).append("\n");
+                    }
+                    showAlert("Warning: Corrupted Data Detected ", warningMessage.toString());
+                }
                 System.out.println("Data loaded successfully.");
 
             } 
@@ -96,5 +109,14 @@ public class MainController
         {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(String title, String content)
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
