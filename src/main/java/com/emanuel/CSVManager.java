@@ -1,10 +1,15 @@
 package com.emanuel;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.emanuel.exceptions.InvalidItemException;
 
 public class CSVManager 
 {
@@ -54,5 +59,77 @@ public class CSVManager
         {
             System.out.println("Error saving appointments: " + e.getMessage());
         }
+    }
+
+    public List<Contact> loadContacts() 
+    {
+        List<Contact> loadedContacts = new ArrayList<>();
+        File file = new File(CONTACTS_FILE);
+        
+        if (!file.exists()) return loadedContacts; 
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) 
+        {
+            String line;
+            while ((line = reader.readLine()) != null) 
+            {
+                String[] parts = line.split(";"); 
+                if (parts.length == 2) 
+                {
+                    try 
+                    {
+                        loadedContacts.add(new Contact(parts[0], parts[1]));
+                    } 
+                    
+                    catch (InvalidItemException e) 
+                    {
+                        System.out.println("Skipped corrupted contact line: " + line);
+                    }
+                }
+            }
+        } 
+        
+        catch (IOException e) 
+        {
+            System.out.println("Error loading contacts: " + e.getMessage());
+        }
+        
+        return loadedContacts;
+    }
+
+    public List<Appointment> loadAppointments() 
+    {
+        List<Appointment> loadedAppointments = new ArrayList<>();
+        File file = new File(APPOINTMENTS_FILE);
+
+        if (!file.exists()) return loadedAppointments;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) 
+        {
+            String line;
+            while ((line = reader.readLine()) != null) 
+            {
+                String[] parts = line.split(";");
+                if (parts.length == 3) 
+                {
+                    try
+                    {
+                        loadedAppointments.add(new Appointment(parts[0], parts[1], parts[2]));
+                    } 
+                    
+                    catch (InvalidItemException e)
+                    {
+                        System.out.println("Skipped corrupted appointment line: " + line);
+                    }
+                }
+            }
+        } 
+        
+        catch (IOException e) 
+        {
+            System.out.println("Error loading appointments: " + e.getMessage());
+        }
+        
+        return loadedAppointments;
     }
 }
