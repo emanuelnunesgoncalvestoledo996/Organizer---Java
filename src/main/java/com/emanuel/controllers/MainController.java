@@ -2,7 +2,9 @@ package com.emanuel.controllers;
 
 import com.emanuel.Contact; 
 import com.emanuel.Appointment;
-import com.emanuel.Organizer; // Importe o Organizer!
+import com.emanuel.Organizer; 
+import com.emanuel.CSVManager;
+import com.emanuel.exceptions.DuplicateItemException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,37 @@ public class MainController
     private static Organizer<Contact> contactOrganizer = new Organizer<>();
     private static Organizer<Appointment> appointmentOrganizer = new Organizer<>();
 
+    private static CSVManager csvManager = new CSVManager();
+    private static boolean isDataLoaded = false;
+
+    @FXML
+    public void initialize() {
+        if (!isDataLoaded) {
+            try 
+            {
+                for (Contact c : csvManager.loadContacts()) 
+                {
+                    contactOrganizer.add(c);
+                }
+
+                for (Appointment a : csvManager.loadAppointments()) 
+                {
+                    appointmentOrganizer.add(a);
+                }
+                
+                isDataLoaded = true; 
+                System.out.println("Data loaded successfully.");
+
+            } 
+            
+            catch (DuplicateItemException e) 
+            {
+                System.out.println("Notice: Skipped duplicate item during load - " + e.getMessage());
+                isDataLoaded = true;
+            }
+        }
+    }
+
     @FXML
     public void onContactsButtonClick(ActionEvent event) 
     {
@@ -34,7 +67,12 @@ public class MainController
     @FXML
     public void onExitButtonClick() 
     {
-        System.out.println("Saving data (simulated) and exiting...");
+        System.out.println("Saving data.");
+
+        csvManager.saveContacts(contactOrganizer.getAllItems());
+        csvManager.saveAppointments(appointmentOrganizer.getAllItems());
+
+        System.out.println("Data saved successfully. Exiting.");
         System.exit(0);
     }
 
