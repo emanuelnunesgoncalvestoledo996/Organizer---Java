@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #f4f4f4;" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emanuel.controllers.MainController">
@@ -44,17 +47,33 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #2b2b2b;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Welcome to Personal Organizer">
+            <Label styleClass="welcome-text" text="Welcome to Personal Organizer" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font size="22.0" />
                </font>
             </Label>
-            <Label text="Select an option from the sidebar to begin." textFill="#666666">
+            <Label styleClass="welcome-text" text="Select an option from the sidebar to begin.">
                <font>
                   <Font size="14.0" />
                </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
          </children>
       </VBox>

@@ -39,11 +39,6 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPrintClick" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-cursor: hand;" text="Print">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBackToMenuClick" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-cursor: hand;" text="Back to Menu">
                <font>
                   <Font size="13.0" />

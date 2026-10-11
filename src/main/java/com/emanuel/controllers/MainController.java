@@ -6,6 +6,7 @@ import com.emanuel.Organizer;
 import com.emanuel.CSVManager;
 import com.emanuel.exceptions.DuplicateItemException;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.List;
@@ -83,17 +85,36 @@ public class MainController
         csvManager.saveAppointments(appointmentOrganizer.getAllItems());
     }
 
+    private void showTemporaryAlert(String title, String content, Runnable onFinished) 
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(event -> alert.close());
+
+        alert.setOnHidden(event -> {
+            if (onFinished != null) 
+            {
+                onFinished.run();
+            }
+        });
+
+        alert.show();
+        delay.play();
+    }
+
     @FXML
     public void onExitButtonClick() 
     {
-        System.out.println("Saving data.");
         saveAllData();
 
         csvManager.saveContacts(contactOrganizer.getAllItems());
         csvManager.saveAppointments(appointmentOrganizer.getAllItems());
 
-        System.out.println("Data saved successfully. Exiting.");
-        System.exit(0);
+        showTemporaryAlert("Data saved successfully. Exiting.", null, () -> System.exit(0));
     }
 
     private void openManagementView(ActionEvent event, String type, Organizer<?> organizer) 

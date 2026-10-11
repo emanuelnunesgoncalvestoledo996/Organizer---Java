@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -192,25 +191,6 @@ public class ManagementController {
         {
             showAlert("No Selection", "Please select an item to update.");
         }
-    }
-
-    @FXML
-    public void onPrintClick(ActionEvent event) 
-    {
-        if (currentOrganizer.getAllItems().isEmpty()) 
-        {
-            showAlert("List Empty", "The " + currentType.toLowerCase() + " list is empty.");
-            return;
-        }
-
-        System.out.println("--- PRINTING " + currentType.toUpperCase() + " ---");
-
-        for (Schedulable item : currentOrganizer.getAllItems()) 
-        {
-            System.out.println(item.getDetails());
-        }
-
-        showAlert("Print Successful", "Check your terminal for the printed list.");
     }
 
     private void showAlert(String title, String content) 
