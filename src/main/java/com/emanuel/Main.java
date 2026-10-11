@@ -12,8 +12,13 @@ public class Main extends Application {
         throws Exception {
             
         Parent root = FXMLLoader.load(getClass().getResource("/com/emanuel/MainView.fxml"));
+
+        Scene scene = new Scene(root);
+
+        scene.getStylesheets().add(getClass().getResource("/com/emanuel/style.css").toExternalForm());
+
         primaryStage.setTitle("Organizer");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
